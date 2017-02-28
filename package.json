@@ -1,5 +1,5 @@
 {
-  "name": "chrome-net",
+  "name": "cordova-chrome-net",
   "description": "Use the Node `net` API in Chrome Apps",
   "version": "3.3.0",
   "author": "Feross Aboukhadijeh <feross@feross.org> (http://feross.org/)",

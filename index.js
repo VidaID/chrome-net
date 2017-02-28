@@ -816,15 +816,15 @@ Socket.prototype._onReceive = function (data) {
   var buffer = Buffer.from(data)
   var offset = this.bytesRead
 
-  this.bytesRead += buffer.length
-  this._unrefTimer()
-
   if (this.ondata) {
     console.error('socket.ondata = func is non-standard, use socket.on(\'data\', func)')
     this.ondata(buffer, offset, this.bytesRead)
   }
   if (!this.push(buffer)) { // if returns false, then apply backpressure
-    chrome.sockets.tcp.setPaused(this.id, true)
+    chrome.sockets.tcp.setPaused(this.id, true)  // onReceive will be called again with this data
+  } else {
+    this.bytesRead += buffer.length
+    this._unrefTimer()
   }
 }
 
